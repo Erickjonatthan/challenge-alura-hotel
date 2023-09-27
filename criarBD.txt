@@ -1,0 +1,26 @@
+-- Criação do Banco de Dados
+CREATE DATABASE hotel_alura;
+ 
+ use hotel_alura;
+ 
+-- Criação da tabela Reservas
+CREATE TABLE Reservas (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Codigo VARCHAR(45) UNIQUE NOT NULL,
+    DataEntrada DATE NOT NULL,
+    DataSaida DATE NOT NULL,
+    Valor DECIMAL(10, 2) NOT NULL,
+    FormaPagamento VARCHAR(50) NOT NULL
+);
+
+-- Criação da tabela aHaóspedes
+CREATE TABLE Hospedes (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(50) NOT NULL,      
+    Sobrenome VARCHAR(50) NOT NULL,
+    DataNascimento DATE NOT NULL,
+    Nacionalidade VARCHAR(50) NOT NULL,
+    Telefone VARCHAR(20) NOT NULL,
+    CodigoReserva VARCHAR(45) NOT NULL,
+    FOREIGN KEY (CodigoReserva) REFERENCES Reservas(Codigo)
+);
